@@ -1,10 +1,45 @@
 // index.js
 const express = require('express');
+const cors = require('cors');
+
 const app = express();
 const PORT = 4000;
 
+
+// CORS 설정
+app.use(cors({
+    origin: 'http://localhost:3000', // 허용할 도메인
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // 허용할 HTTP 메서드
+    credentials: true, // 쿠키 전송 허용
+  }));
+  
 // JSON 형식의 요청 본문을 처리할 수 있도록 설정
 app.use(express.json());
+
+
+//test
+app.post('/user/signup', (req, res) => {
+    console.log('user/signup', req.body)
+    res.send({
+        statusCode: 200, // 상태코드 (보인 서버상태코드)
+        errorCode: 0, // 에러코드 (본인 서버에러코드)
+        message: 'Signup successful!', // 메시지
+        result: {}, // 데이터 내용
+        timestamp: new Date() // 시간
+    });
+})
+
+
+// 서버 시작
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+
+
+
+
+
 
 // 샘플 데이터 (기본 사용자 목록)
 let users = [
@@ -50,7 +85,3 @@ app.delete('/users/:id', (req, res) => {
     res.status(204).send();
 });
 
-// 서버 시작
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
