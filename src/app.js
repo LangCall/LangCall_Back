@@ -1,9 +1,17 @@
 // index.js
 const express = require('express');
 const cors = require('cors');
+const errorHandler = require('./middlewares/errorHandler')
+
+// 회원 정보 라우터
+const userRoutes = require("./routes/userRoutes")
+
+
+
 
 const app = express();
 const PORT = 4000;
+
 
 
 // CORS 설정
@@ -13,8 +21,24 @@ app.use(cors({
     credentials: true, // 쿠키 전송 허용
   }));
   
+
 // JSON 형식의 요청 본문을 처리할 수 있도록 설정
 app.use(express.json());
+
+// 컨트롤러, 서비스 매핑 라우터
+app.use('/api/users', userRoutes); // 회원 정보 라우터
+
+
+
+
+// 에러 처리 미들웨어
+app.use(errorHandler);
+
+
+
+
+
+
 
 
 //test
@@ -34,6 +58,8 @@ app.post('/user/signup', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+
 
 
 
