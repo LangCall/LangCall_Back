@@ -1,9 +1,18 @@
 // index.js
 const express = require('express');
 const cors = require('cors');
+// 환경 변수
+// npm install dotenv
+const dotenv = require("dotenv").config();
+
 const errorHandler = require('./middlewares/errorHandler')
 
-// 회원 정보 라우터
+// db 연동
+//npm install mysql2
+const mysql = require('./config/db');
+mysql.pool;
+
+// 라우터
 const userRoutes = require("./routes/userRoutes")
 
 
