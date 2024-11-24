@@ -1,7 +1,12 @@
-const { getUserList, getUserInfo, addUser} = require('../services/userService');
+const { 
+    getUserList, getUserInfo, 
+    s_createUser,
+
+
+} = require('../services/userService');
 
 // 회원 정보 (전체)
-const con_getUsers = async (req, res) => {
+const c_getUsers = async (req, res) => {
     try {
         console.log('controller 진입')
         const users = await getUserList();
@@ -12,23 +17,13 @@ const con_getUsers = async (req, res) => {
     }
 };
 
-// 회원 정보 (개인)
-const con_getUserInfo = (req, res) =>{
-    try {
-        console.log('req', req.params);
-        const userInfo = getUserInfo(Number(req.params.id));
-        res.json(userInfo)
-    }catch(error){
-        throw(error)
-    }
-}
 
 
 
 // 회원 생성(회원가입)
-const createUser = (req, res) => {
+const c_createUser = async (req, res) => {
     try {
-        const newUser = addUser(req.body);
+        const newUser = await s_createUser(req.body);
         res.status(201).json(newUser);
     } catch (error) {
         throw(error);
@@ -37,4 +32,4 @@ const createUser = (req, res) => {
 
 
 
-module.exports = { con_getUsers, con_getUserInfo, createUser };
+module.exports = { c_getUsers, c_createUser };

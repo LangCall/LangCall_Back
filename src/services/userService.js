@@ -1,6 +1,7 @@
-let users = [{ id: 1, name: 'Alice' }, {id:2, name: 'a'}];
-
-const {getAllUsers} = require("../repositories/userRepository")
+const {
+    getAllUsers,
+    insertUser,
+} = require("../repositories/userRepository")
 
 
 // 회원 정보 (전체)
@@ -10,23 +11,17 @@ const getUserList = async () => {
     console.log('service', result);
     return result;
 }
-// 회원 정보 (개인)
-const getUserInfo = (id) =>{
-    const userInfo = users.filter((value) => value.id === id);
-    console.log('servcie ->', userInfo, id)
-    return userInfo;
-}
-
 
 // 회원 생성(회원가입)
-const addUser = (userData) => {
-    const newUser = { id: users.length + 1, ...userData };
-    users.push(newUser);
+const s_createUser = async (userData) => {
+    console.log('create service 진입', userData)
+    const newUser = await insertUser(userData);
+    console.log(newUser)
     return newUser;
 };
 
 
 module.exports = { 
-    getUserList, getUserInfo, 
-    addUser 
+    getUserList, 
+    s_createUser 
 };
