@@ -3,7 +3,7 @@ const express = require('express');
 const {
     c_getUsers, 
     c_createUser, 
-
+    c_signinUser
 
 } = require('../controllers/userController.js');
 
@@ -20,7 +20,7 @@ router.get('/', c_getUsers);
 
 // post
 router.post('/signup', c_createUser);
-
+router.post('/signin', c_signinUser);
 
 
 

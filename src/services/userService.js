@@ -1,6 +1,7 @@
 const {
     getAllUsers,
     insertUser,
+    verifyUser
 } = require("../repositories/userRepository")
 
 
@@ -14,14 +15,18 @@ const getUserList = async () => {
 
 // 회원 생성(회원가입)
 const s_createUser = async (userData) => {
-    console.log('create service 진입', userData)
     const newUser = await insertUser(userData);
-    console.log(newUser)
     return newUser;
 };
 
+//로그인
+const s_signinUser = async(userData) => {
+    const result = await verifyUser(userData);
+    return result;
+}
 
 module.exports = { 
     getUserList, 
-    s_createUser 
+    s_createUser,
+    s_signinUser,
 };
