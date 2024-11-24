@@ -1,9 +1,11 @@
 const { getUserList, getUserInfo, addUser} = require('../services/userService');
 
 // 회원 정보 (전체)
-const con_getUsers = (req, res) => {
+const con_getUsers = async (req, res) => {
     try {
-        const users = getUserList();
+        console.log('controller 진입')
+        const users = await getUserList();
+        console.log('controller', users)
         res.json(users);
     } catch (error) {
         throw(error);
