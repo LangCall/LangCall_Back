@@ -1,7 +1,13 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
+
+console.log('db.js, ', 
+    process.env.DB_HOST, process.env.DB_PORT, 
+    process.env.DB_USER, process.env.DB_PASSWORD,
+    process.env.DB_NAME
+)
 
 // connection보다 pool이 더 좋대 gpt
-const pool = mysql.createPool(
+const db = mysql.createPool(
     {
         host : process.env.DB_HOST,
         port: process.env.DB_PORT,
@@ -12,4 +18,4 @@ const pool = mysql.createPool(
     }
 );
 
-module.exports = pool;
+module.exports = {db};
