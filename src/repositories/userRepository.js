@@ -25,8 +25,8 @@ const insertUser = async(userData) => {
 const verifyUser = async(userData) =>{
     const {email, password, user_type} = userData;
     const [result] = await db.query(
-        'SELECT * FROM LC_USER_T WHERE email = ? AND password = ? AND user_type = ?',
-        [email, password, user_type]
+        'SELECT * FROM LC_USER_T WHERE email = ? AND user_type = ?',
+        [email, user_type]
     )
     return result[0];
 }

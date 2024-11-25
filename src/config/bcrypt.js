@@ -23,12 +23,15 @@ const comparePassword = async (plainPassword, hashedPassword) => {
 };
 
 
-// 사용 예시
-(async () => {
-    const password = "mypassword123";
-    const hashed = await hashPassword(password);
-    console.log("Hashed Password:", hashed);
+// // 사용 예시
+// (async () => {
+//     const password = "mypassword123";
+//     const hashed = await hashPassword(password);
+//     console.log("Hashed Password:", hashed);
 
-    const result = await comparePassword("mypassword3", "$2b$10$ALuu3Mxln2Ym.k.kJaH0j.uQlNR2rffulLOpuKsgs1DkSsSBHs50y");
-    console.log('result', result)
-})();
+//     const result = await comparePassword("mypassword3", "$2b$10$ALuu3Mxln2Ym.k.kJaH0j.uQlNR2rffulLOpuKsgs1DkSsSBHs50y");
+//     console.log('result', result)
+// })();
+
+
+module.exports = { hashPassword, comparePassword }
