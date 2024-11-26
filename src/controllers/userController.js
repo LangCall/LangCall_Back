@@ -7,7 +7,8 @@ const {
 // 상태 코드 (가독성을 위해)
 // service에 넣지 않는 이유
 const STATUS_CODES = require('../middlewares/statusCode');
-
+// 토큰
+const {generateToken} = require("../config/createtoken")
 
 
 // 회원 정보 (전체)
@@ -64,14 +65,21 @@ const c_signinUser = async(req, res) => {
         if (!result) { // 401: 인증 실패
             return res.status(STATUS_CODES.UNAUTHORIZED).json({ message: 'Invalid  username, password or type.' });
         }
+        
 
         // 로그인 성공
+
+        // JWT 생성
+        const token = generateToken({ user_id: result.user_id, email: result.email });
+        console.log('token 생성 완료', token)
+
         // json 안이 front로 보내지는 데이터 
         res.status(STATUS_CODES.OK).json({
             statusCode: 200,
             errorCode: 0,
             message: 'Login Up Successful.', 
             result: { email: result.email, name: result.name, user_type: result.user_type },
+            token, 
             timestamp: new Date(),
         });
     }catch(error){

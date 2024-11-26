@@ -17,6 +17,13 @@ const router = express.Router();
 router.get('/', c_getUsers);
 // router.get('/:id', c_getUserInfo);
 
+// auth 인증이 필요한 API 호출 시
+// router.get('/protected', authMiddleware, (req, res) => {
+//     res.status(200).json({ message: 'This is a protected route', user: req.user });
+// });
+
+
+
 
 // post
 router.post('/signup', c_createUser);
