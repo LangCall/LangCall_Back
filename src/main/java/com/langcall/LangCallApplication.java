@@ -1,6 +1,6 @@
-package org.example;
+package com.langcall;
 
-public class Main {
+public class LangCallApplication {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
     }
