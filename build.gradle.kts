@@ -30,6 +30,16 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    // Security
+    implementation ("org.springframework.boot:spring-boot-starter-security")
+    //  Temporary explicit version to fix Thymeleaf bug
+    implementation ("org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.2.RELEASE")
+    testImplementation ("org.springframework.security:spring-security-test")
+
+    // Mysql
+    implementation("mysql:mysql-connector-java:8.0.33")
+    // JPA
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 }
 
 tasks.withType<Test> {
