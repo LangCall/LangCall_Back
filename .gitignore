@@ -176,6 +176,7 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+out/
 
 ### VisualStudioCode ###
 .vscode/*
@@ -225,10 +226,15 @@ $RECYCLE.BIN/
 ### Gradle ###
 .gradle
 .gradle/
+.idea
 .idea/
 **/build/
 !src/**/build/
 .smarttomcat/
+
+.build
+build/
+out/
 
 # Ignore Gradle GUI config
 gradle-app.setting
