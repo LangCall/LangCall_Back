@@ -1,5 +1,6 @@
 package com.langcall.config;
 
+import com.langcall.security.CustomCorsConfig;
 import com.langcall.security.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +30,7 @@ import java.util.List;
 public class WebSecurityConfig {
 
     private final CustomUserDetailsService customUserDetailsService;
+    private final CustomCorsConfig customCorsConfig;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -46,26 +48,11 @@ public class WebSecurityConfig {
                                 .defaultSuccessUrl("/", true)
                 )
                 .logout((logout) -> logout.permitAll())
-                .httpBasic(Customizer.withDefaults()); // HTTP 기본 인증 지원하지만, 서블릿 기반 구성이 제공되는 즉시 HTTP 기본 인증을 명시적으로 제공해야 합니다.
-
+                .httpBasic(Customizer.withDefaults()) // HTTP 기본 인증 지원하지만, 서블릿 기반 구성이 제공되는 즉시 HTTP 기본 인증을 명시적으로 제공해야 합니다.
+                .cors(cors -> cors.configurationSource(customCorsConfig.corsConfigurationSource()));
         // CORS 설정을 명시적으로 추가
         return http.build();
     }
-
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration config = new CorsConfiguration();
-//        config.setAllowCredentials(true);
-//        config.setAllowedOrigins(List.of("http://localhost:3000"));
-//        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
-//        config.setAllowedHeaders(List.of("*"));
-//        config.setExposedHeaders(List.of("*"));
-//
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", config);
-//        return source;
-//    }
-
 
     @Bean
     public AuthenticationManager authenticationManager(
