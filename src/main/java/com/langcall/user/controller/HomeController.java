@@ -13,8 +13,9 @@ public class HomeController {
         return "/";
     }
 
-    @GetMapping("hello")
+    @GetMapping("/hello")
     public String hello(){
+        System.out.println("hello world");
         return "hello world";
     }
 

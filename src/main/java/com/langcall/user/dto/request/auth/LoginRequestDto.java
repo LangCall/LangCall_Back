@@ -1,7 +1,12 @@
 package com.langcall.user.dto.request.auth;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class LoginRequestDto {
     private String email;
     private String password;
-    private String user_type;
+    private int user_type;
 }
